@@ -95,11 +95,7 @@ void esub(const char* regexp, const char* substitution, const char* string) {
                 res_len += pmatch[(substitution[i+1] - '0')].rm_eo - pmatch[(substitution[i+1] - '0')].rm_so;
                 i++;
             }
-            else if (substitution[i+1] == '\\') {
-                i++;
-                res_len++;
-            }
-            else if (substitution[i+1] == 'n') {
+            else if (substitution[i+1] == '\\' || substitution[i+1] == 'n' || substitution[i+1] == 't') {
                 i++;
                 res_len++;
             }
@@ -135,6 +131,10 @@ void esub(const char* regexp, const char* substitution, const char* string) {
             }
             else if (substitution[i+1] == 'n') {
                 result[offset++] = '\n';
+                i++;
+            }
+            else if (substitution[i+1] == 't') {
+                result[offset++] = '\t';
                 i++;
             }
             
