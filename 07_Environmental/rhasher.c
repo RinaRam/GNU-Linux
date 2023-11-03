@@ -4,6 +4,11 @@
 #include <rhash.h>
 #include <ctype.h>
 #include <sys/stat.h>
+// #define USE_READLINE
+
+#ifdef USE_READLINE
+#include <readline/readline.h>
+#endif
 
 
 void calculate_and_print_hash(int hash_id, const unsigned char* input, size_t length, int output_as_hex) {
@@ -40,8 +45,14 @@ int is_file(const char* path) {
 int main(int argc, char* argv[]) {
     char *line = NULL;
     size_t len = 0;
-    
+
+    #ifdef USE_READLINE
+    rl_bind_key('\t', rl_complete); // Включение автодополнения с помощью TAB
+    while (line = readline("> ")) {
+        len = strlen(line);
+    #else
     while (getline(&line, &len, stdin) != -1) {
+    #endif
         char *hash_type = strtok(line, " ");
         char *input = strtok(NULL, "\n");
 
