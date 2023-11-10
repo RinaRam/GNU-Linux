@@ -9,7 +9,7 @@
 #define _(STRING) gettext(STRING)
 
 
-int main() {
+int main(int argc, char *argv[]) {
     setlocale (LC_ALL, "");
     bindtextdomain ("number_guesser", LOCALE_PATH);
     textdomain ("number_guesser");
@@ -17,7 +17,7 @@ int main() {
     int low = 1;
     int high = 100;
     int guess;
-    char answer[3];
+    char answer[6];
 
     printf(_("Guess a number between 1 and 100.\n"));
 

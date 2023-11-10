@@ -6,7 +6,7 @@ AC_INIT([number_guesser], [0.0], [animarosaceus@mail.ru])
 AM_INIT_AUTOMAKE([foreign])
 AM_GNU_GETTEXT([external])
 AM_GNU_GETTEXT_REQUIRE_VERSION(0.21)
-GETTEXT_PACKAGE=ahello
+GETTEXT_PACKAGE=number_guesser
 AC_SUBST(GETTEXT_PACKAGE)
 ALL_LINGUAS="ru"
 AC_CONFIG_SRCDIR([src/number_guesser.c])
