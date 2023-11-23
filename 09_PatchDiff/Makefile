@@ -3,7 +3,7 @@ CFLAGS = -Wall -Wextra -pedantic -O0 -g
 TARGET = labirint labirint_1 labirint_2 labirint_3
 TRASH = labirint_1* labirint_2* labirint_3* *.o
 
-all:	labirint labirint_1 labirint_2 labirint_3
+all:	$(TARGET) run
 
 labirint_1.c:	labirint.c 0001_Size_indication.patch
 	patch labirint.c -i 0001_Size_indication.patch -o labirint_1.c
@@ -26,7 +26,7 @@ labirint_2:	labirint_2.c
 labirint_3:	labirint_3.c
 	$(CC) -o $@ $^
 
-run:	labirint labirint_1 labirint_2 labirint_3
+run:	$(TARGET)
 	./labirint 
 	./labirint_1 10
 	./labirint_2 '*B' 7
