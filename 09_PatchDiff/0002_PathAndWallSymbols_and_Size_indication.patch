@@ -1,0 +1,36 @@
+--- labirint.c	2023-11-23 10:26:45.873329432 +0300
++++ labirint_2.c	2023-11-23 10:34:25.495993365 +0300
+@@ -1,6 +1,7 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <time.h>
++#include <string.h>
+ 
+ 
+ void path_generation(int size, char (*maze)[size], int (*visited)[size], int *row, int *col, int *visited_cnt, int *step, int rooms_count, char path) {
+@@ -83,9 +84,23 @@
+ 
+ 
+ int main(int argc, char *argv[]) {
+-    int rooms_count = 6, size = rooms_count * 2 + 1; 
++    if (argc < 3) {
++        printf("Usage: ./labirint <path_symbol_and_wall_symbol> <size>\n");
++        return 1;
++    }
++
++    int rooms_count = atoi(argv[2]), size = rooms_count * 2 + 1;
++    if (rooms_count < 1) {
++        printf("Size should be >= 1\n");
++        return 1;
++    }
+ 
+-    char path = '.', wall = '#'; 
++    if (strlen(argv[1]) != 2) {
++        printf("<path_symbol_and_wall_symbol> should have two symbol\n");
++        return 1;
++    }
++    
++    char path = argv[1][0], wall = argv[1][1];
+ 
+     // Initialize the maze with walls
+     char maze[size][size];
